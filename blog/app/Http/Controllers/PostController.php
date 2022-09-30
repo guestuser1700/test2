@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Category;
+use App\Post;
 
 class PostController extends Controller
 {
@@ -21,5 +23,9 @@ class PostController extends Controller
     $post->fill($input_post)->save();
 
     return redirect('/posts/' . $post->id);
+}
+public function create(Category $category)
+{
+    return view('posts/create')->with(['categories' => $category->get()]);;
 }
 }
